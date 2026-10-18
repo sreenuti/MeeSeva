@@ -1,6 +1,6 @@
 # MVP Requirements
 
-**Status:** M0 baseline  
+**Status:** M2 approved for synthetic local development; M3 not authorized  
 **Last updated:** 2026-10-18  
 **Depends on:** `PRODUCT_VISION.md`, `PILOT_SERVICE.md`
 
@@ -201,4 +201,6 @@ Provisional until baseline testing:
 
 ## 6. Pilot dependency gate
 
-MVP application-engine work (M3+) requires `PILOT_SERVICE.md` status **UNBLOCKED** for the chosen service (Income Certificate preferred; Residence Certificate fallback). Until then, M1–M2 may proceed.
+M2 may proceed on synthetic data. M3 application-engine work requires `PILOT_SERVICE.md` and `M3_READINESS_REPORT.md` to show the chosen service **UNBLOCKED**, plus an explicit product-owner approval to implement.
+
+As of 2026-10-18 the provisional workflow is Andhra Pradesh Residence Certificate (General), limited to an assistive worksheet. Income Certificate is a future candidate. Residence Certificate (Passport) is excluded. The readiness verdict is **NOT READY**. Do not implement the service catalog, application engine, or PDF generator.

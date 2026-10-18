@@ -1,6 +1,6 @@
 # Milestones M0–M6
 
-**Status:** M0 baseline  
+**Status:** M2 approved for synthetic local development; M3 not authorized  
 **Last updated:** 2026-10-18  
 **Rule:** Do not start Mi+1 until exit gate of Mi is met and product owner approves.
 
@@ -48,7 +48,7 @@
 | **Focused tests** | Clean process; quarantine deny; provenance; corrections; conflicts; isolation; duplicate jobs; M1 vault intact |
 | **Exit gate** | Product-owner review of M2 report |
 | **Exclusions** | Service catalog, application prep, package PDF, assistant, real PII to external AI, M3+ |
-| **Implementation status** | **Implemented (pending review)** — 2026-10-18 |
+| **Implementation status** | **Approved for synthetic local development** — 2026-10-18. Not a production or real-document approval |
 
 ---
 
@@ -57,12 +57,12 @@
 | | |
 |---|---|
 | **Objective** | One validated service definition drives deterministic application drafts |
-| **Dependencies** | M2; **PILOT_SERVICE blockers B1–B4 cleared** (or approved fallback + its validation) |
+| **Dependencies** | M2 approved; product-owner approval to implement; R-GO cleared or an explicit decision to proceed with a worksheet that does not assert legal availability. See `M3_READINESS_REPORT.md` |
 | **Scope** | Versioned ServiceDefinition; requirements; mapping; missing/conflict detection; supporting-doc match; draft application |
 | **Deliverables** | Published pilot service version; engine APIs; draft UI |
 | **Acceptance criteria** | Zero invented required values; mapping deterministic; missing/conflicts correct per definition; only published version selectable |
 | **Focused tests** | Missing docs; conflicts; invalid formats; service version change mid-draft |
-| **Exit gate** | Product sign-off that service definition matches verified official evidence |
+| **Exit gate** | Product sign-off that the published service definition matches verified official evidence. **Not met. M3 implementation is not authorized.** |
 | **Exclusions** | Final package PDF, HITL approval UX polish (basic draft OK), billing |
 
 ---
@@ -120,4 +120,4 @@ M0 → M1 → M2 → M3 → M4 → M5 → M6
                  └── requires pilot UNBLOCKED (or approved fallback)
 ```
 
-M1–M2 may proceed while Income Certificate research completes. **M3 must not invent form fields.**
+M2 is approved for synthetic local development. The provisional pilot is Residence Certificate (General), as an assistive worksheet only. **M3 must not start, must not invent form fields, and must not be treated as ready while R-GO is BLOCKED.**
