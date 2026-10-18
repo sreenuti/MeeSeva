@@ -49,6 +49,12 @@ class Settings(BaseSettings):
     soft_delete_grace_days: int = 30
     consent_policy_version: str = "2026-10-18"
 
+    # M2 intelligence (local-only; no external AI providers)
+    ocr_provider: Literal["local"] = "local"
+    ocr_max_pages: int = 10
+    ocr_timeout_seconds: int = 60
+    intelligence_min_embedded_text_chars: int = 40
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]

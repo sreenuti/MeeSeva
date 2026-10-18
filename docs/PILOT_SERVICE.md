@@ -1,177 +1,177 @@
-# Pilot Service — Andhra Pradesh Income Certificate
+# Pilot Service Validation
 
-**Status:** BLOCKED for implementation (partially verified)  
-**Last researched:** 2026-10-18  
-**Preferred pilot:** AP Income Certificate (Revenue)  
-**Fallback:** AP Residence Certificate (documented below; not selected for dual MVP)
+**Status:** Income Certificate — **BLOCKED** for M3 form-mapping · Residence Certificate — **conditionally better form artifact**, still not M3-ready  
+**Last researched:** 2026-10-18 (M2 closure / M3 readiness review)  
+**Preferred pilot (product baseline):** AP Income Certificate (Revenue) — provisional  
+**Recommended next pilot decision:** See §12  
+
+Do **not** use the EWS Income & Asset Certificate form as a substitute for the regular Income Certificate.
 
 ---
 
-## 1. Verification summary
+## 1. Decision matrix (what can be established authoritatively?)
+
+| Requirement | Regular Income Certificate | Residence Certificate (General / Passport) |
+|---|---|---|
+| Service exists officially | **VERIFIED** | **VERIFIED** |
+| Responsible department / authority | **VERIFIED** — Revenue; Tahsildar / Deputy Tahsildar | **VERIFIED** — Revenue; Tahsildar/MRO (district pages) |
+| Supporting-document checklist | **VERIFIED (high level)** | **VERIFIED (high level)** via district `.ap.gov.in` pages |
+| Complete application field schema | **MISSING** — not published as regular blank form; online schema not captured | **PARTIAL** — official Telugu blank form exists; English field list not authoritatively translated in this review |
+| Official blank form / digital field schema | **MISSING** on MeeSeva Application Forms index for *regular* Income Certificate | **VERIFIED artifact** — MeeSeva Revenue Residence Telugu PDF |
+| Permitted use / reproduction of form template | **UNVERIFIED** | **UNVERIFIED** |
+| Submission / package acceptance | **PARTIALLY VERIFIED** — primary path is online APSEVA/VSWS; offline package acceptance not verified | **PARTIALLY VERIFIED** — MeeSeva centre / portal; offline facsimile acceptance not verified |
+
+---
+
+## 2. Andhra Pradesh Income Certificate (preferred baseline)
+
+### 2.1 Verification summary
 
 | Item | Status | Notes |
 |---|---|---|
-| Service exists officially | VERIFIED | Listed in AP GSWS/APSEVA materials |
+| Service exists officially | VERIFIED | APSEVA SOP; GSWS CSP manual; district service lists |
 | Responsible department | VERIFIED | Revenue Department |
 | Competent authority | VERIFIED | Tahsildar / Deputy Tahsildar |
-| SLA | VERIFIED | 7 days (official SOP/user manual) |
-| Fee | VERIFIED | ₹12 (official SOP) |
-| Supporting documents (checklist) | VERIFIED (high level) | Application form; IT returns/pay slips/other income proof; Ration Card / EPIC / Aadhaar |
-| Official online submission channel | VERIFIED | APSEVA / VSWS online citizen login |
-| Complete field-level form schema (regular Income Certificate) | UNVERIFIED / MISSING | No authoritative English field list captured for the current online service application form |
-| Downloadable official blank form suitable for offline package | UNVERIFIED / MISSING | EWS form found; regular Income Certificate field form not verified as equivalent |
-| Form reproduction / usage permissions | UNVERIFIED | Rights to regenerate official form layout unknown |
-| Generated package usable as official submission artifact | UNVERIFIED / LIKELY CONSTRAINED | Primary channel is online portal upload/payment; offline print package may be assistive only |
-| Applicant scenarios (individual vs parent income) | PARTIALLY VERIFIED | CSP manual: “Individual as well as based on Parent income” — field details not captured |
-| Signature / undertaking requirements | PARTIALLY VERIFIED | SOP notes citizen may give an undertaking; wet-ink signature rules for offline path unclear |
-| Change-detection process for requirements | RECOMMENDATION only | See §8 |
+| SLA | VERIFIED | 7 days |
+| Fee | VERIFIED | ₹12 (APSEVA Ease of Living SOP) |
+| Supporting documents | VERIFIED (checklist only) | Application form; IT returns / pay slips / other income proof; Ration Card / EPIC / Aadhaar |
+| Official online channel | VERIFIED | APSEVA / VSWS citizen login |
+| Complete field-level schema | **UNVERIFIED / MISSING** | No authoritative English field list for regular Income Certificate |
+| Official blank form | **MISSING** | Not listed on MeeSeva Application Forms (Revenue) page reviewed 2026-10-18 |
+| Form usage permissions | UNVERIFIED | |
+| Package = official submission artifact | UNVERIFIED / LIKELY CONSTRAINED | Online-first submission |
+| Individual vs parent income | PARTIALLY VERIFIED | CSP manual mentions both; fields not captured |
+| Undertaking / signature | PARTIALLY VERIFIED | SOP: citizen may give undertaking |
 
-**Implementation readiness:** BLOCKED until blockers in §9 are cleared or product owner switches to fallback service and validates that path.
+**Implementation readiness for deterministic M3 mapping:** **BLOCKED** (B1–B4).
 
----
+### 2.2 Official sources
 
-## 2. Official sources consulted
-
-| # | Source | URL | Accessed | What it confirmed |
+| # | Source | URL | Accessed | Confirmed |
 |---|---|---|---|---|
-| S1 | APSEVA Ease of Living SOP (Income Certificate section) | https://apseva.ap.gov.in/assets/User-Manuals/EoDB%20SOP%20final.pdf | 2026-10-18 | Authority, SLA 7 days, docs checklist, procedure, fee ₹12, submission URL |
-| S2 | GSWS CSP User Manual | https://apseva.ap.gov.in/assets/User-Manuals/CSP-User-Manual.pdf | 2026-10-18 | Service listed; SLA; approval flow DA→VRO→RI→Deputy Tahsildar/Tahsildar; docs checklist; purpose (loans/fee reimbursement); individual/parent income |
-| S3 | APSEVA / VSWS submission entry | https://vswsonline.ap.gov.in/#/home | 2026-10-18 | Cited in SOP as form submission channel |
-| S4 | MeeSeva EWS Income & Asset Certificate form (related, not same service) | https://ap.meeseva.gov.in/DeptPortal/Application%20Forms%20New/Revenue-pdf/Issuance%20of%20Income%20%20Asset%20Certificate%20%20for%20%20Economically%20Weaker%20Sections(EWS)ApplicationForm.pdf | 2026-10-18 | Full EWS field list — **do not treat as Income Certificate schema** |
-| S5 | Kadapa district notice (revised orders) | https://kadapa.ap.gov.in/te/notice/issue-of-income-certificate-by-the-revenue-authorities-revised-orders-issued-date-04-07-2017-1214-2/ | 2026-10-18 | Confirms existence of revised government orders; PDF content not fully extracted in this research pass |
+| S1 | APSEVA Ease of Living SOP — Income Certificate | https://apseva.ap.gov.in/assets/User-Manuals/EoDB%20SOP%20final.pdf | 2026-10-18 | Authority, SLA, docs, fee ₹12, procedure, submission URL |
+| S2 | GSWS CSP User Manual | https://apseva.ap.gov.in/assets/User-Manuals/CSP-User-Manual.pdf | 2026-10-18 | Service listing, workflow, docs, individual/parent income |
+| S3 | VSWS / APSEVA entry | https://vswsonline.ap.gov.in/#/home | 2026-10-18 | Cited submission channel |
+| S4 | MeeSeva Application Forms index (Revenue) | http://ap.meeseva.gov.in/DeptPortal/Meeseva-Applications.html | 2026-10-18 | Lists EWS + Agricultural Income forms; **no regular Income Certificate blank form listed** |
+| S5 | MeeSeva EWS form (**different service**) | https://ap.meeseva.gov.in/DeptPortal/Application%20Forms%20New/Revenue-pdf/Issuance%20of%20Income%20%20Asset%20Certificate%20%20for%20%20Economically%20Weaker%20Sections(EWS)ApplicationForm.pdf | 2026-10-18 | Full EWS fields — **must not substitute** |
+| S6 | Kadapa district G.O. notice | https://kadapa.ap.gov.in/te/notice/issue-of-income-certificate-by-the-revenue-authorities-revised-orders-issued-date-04-07-2017-1214-2/ | 2026-10-18 | Revised orders exist; PDF not fully extracted this pass |
 
-**Not used as authoritative field sources:** third-party form aggregators.
+**Not used as authoritative field sources:** third-party aggregators (IndiaFilings, etc.).
 
----
-
-## 3. Verified service definition (high level)
-
-| Attribute | Value | Source |
-|---|---|---|
-| Service name | Income Certificate | S1, S2 |
-| State / jurisdiction | Andhra Pradesh | S1, S2 |
-| Department | Revenue | S1, S2 |
-| Competent authority | Tahsildar / Deputy Tahsildar | S1, S2 |
-| Purpose (descriptive) | Certificate of income for individual or based on parent income; used for loans and fee reimbursements | S2 |
-| Applicability | Anyone who wants an Income Certificate | S1 |
-| SLA | 7 days | S1, S2 |
-| Fee | ₹12 | S1 |
-| Category (GSWS) | B | S2 |
-| Workflow (portal) | Citizen/DA application → VRO verify (field visit if needed) → RI reverify → Tahsildar/Deputy Tahsildar approve | S1, S2 |
-
-### Verified supporting documents
-
-From S1/S2 checklist:
+### 2.3 Verified supporting documents (only)
 
 1. Application form  
 2. Copy of IT Returns / Pay Slips (or any other income-proof documents)  
 3. Ration Card / EPIC Card / Aadhaar Card  
 
-**Do not invent** additional mandatory documents for MVP mapping until confirmed.
+### 2.4 Explicit non-substitutes
 
----
-
-## 4. Official procedure (citizen path)
-
-From S1:
-
-1. Citizen logs into APSEVA portal.  
-2. Selects Income Certificate service and fills online application.  
-3. Uploads documents, pays online, submits.  
-4. May give an undertaking.  
-5. VRO → RI → Tahsildar/Deputy Tahsildar processing.  
-6. Citizen tracks by application number; downloads/prints certificate when approved.
-
-**Product implication:** The official happy path is **online submission**, not primarily an offline wet-ink form drop-off. Our MVP package is therefore best framed as an **application-preparation aid** (structured draft + supporting pack + instructions) unless offline acceptance is separately verified.
-
----
-
-## 5. Field / template status
-
-### Regular Income Certificate (pilot target)
-
-| Artifact | Status |
+| Artifact | Why not usable as Income Certificate schema |
 |---|---|
-| Online service application field list | NOT CAPTURED from authoritative walkthrough of current portal screens |
-| Offline blank PDF matching current service | NOT VERIFIED |
-| Mapping sheet for profile → form fields | BLOCKED (depends on field list) |
-| Form template license for regeneration | UNKNOWN |
+| EWS Income & Asset Certificate form (S5) | Separate service; caste/asset declarations specific to EWS |
+| Agriculture Income Certificate form | Separate service in MeeSeva/CSP catalogs |
 
-### Related forms (do not substitute silently)
-
-| Artifact | Status |
-|---|---|
-| EWS Income & Asset Certificate application form | Available (S4); **different service** |
-| Agriculture Income Certificate form | Separate service in CSP catalog |
-
----
-
-## 6. Open questions
-
-1. Exact mandatory/optional fields on the current APSEVA Income Certificate service form (including village/mandal, income year, income breakup, parent vs self).  
-2. Whether a printable application PDF is still accepted at MeeSeva/GSWS centers as a primary path.  
-3. Whether our generated PDF may reproduce official form layout or only a citizen worksheet + portal fill checklist.  
-4. Undertaking / declaration text that must appear verbatim.  
-5. Photo requirements (if any) for regular Income Certificate.  
-6. Validity period of issued certificate and renewal patterns.  
-7. Current G.O. / circular governing issuance (follow S5 PDF and CCLA/Revenue circulars).  
-8. Aadhaar: optional vs practically required in portal UX (EWS form marks Aadhaar optional; regular service unknown).
-
----
-
-## 7. Feasibility assessment
-
-| Dimension | Assessment |
-|---|---|
-| Product fit | HIGH — clear citizen pain; documents + income data map well to vault/profile model |
-| Technical fit for vault/profile/HITL | HIGH |
-| Deterministic form mapping | BLOCKED — missing field schema |
-| Official package acceptance claim | BLOCKED — online-first channel |
-| Assistive preparation without claiming official submission | FEASIBLE — recommended MVP framing if blockers remain |
-| Compliance sensitivity | HIGH — identity + income documents |
-
-**Recommendation:** Keep Income Certificate as preferred pilot, but unblock M3 only after field capture **or** explicitly approve an “assistive worksheet + portal checklist” package format that does not claim to be the official form.
-
----
-
-## 8. Detecting requirement changes (RECOMMENDATION)
-
-1. Quarterly review of APSEVA SOP/user manuals and MeeSeva Revenue forms directory.  
-2. Manual walkthrough of published citizen portal screens; screenshot/hash field schema into `ServiceDefinition` changelog.  
-3. Track district/CCLA G.O. notices for income certificate rules.  
-4. Retire prior `ServiceDefinition` versions; never silently mutate published versions used by in-flight applications.
-
----
-
-## 9. Implementation blockers (must clear before M3)
+### 2.5 Income Certificate blockers (before M3)
 
 | ID | Blocker | Owner |
 |---|---|---|
-| B1 | Capture authoritative field-level schema for current Income Certificate online form | Product + research |
-| B2 | Decide package format: official-form facsimile vs assistive worksheet + portal checklist | Product owner |
-| B3 | Confirm form usage/reproduction permissions | Legal / product |
-| B4 | Validate whether package supports any official offline channel, or online-assist only | Product |
-| B5 | Write versioned `ServiceDefinition` from verified evidence only | Engineering (after B1–B4) |
-
-Until B1–B4 are resolved, mark workflow **BLOCKED**. Do not invent fields.
+| B1 | Authoritative field-level schema for regular Income Certificate (portal capture or official blank form) | Product + research |
+| B2 | Package format: official facsimile vs assistive worksheet + portal checklist | Product owner |
+| B3 | Form reproduction / usage permissions | Legal / product |
+| B4 | Whether any offline package is accepted officially, or online-assist only | Product |
+| B5 | Versioned `ServiceDefinition` from verified evidence only | Engineering after B1–B4 |
 
 ---
 
-## 10. Fallback — Residence Certificate (not dual-MVP)
+## 3. Fallback — Andhra Pradesh Residence Certificate
 
-Documented for contingency if Income Certificate remains blocked.
+### 3.1 Why reconsider
 
-| Attribute | Value | Source examples |
+Compared with regular Income Certificate, Residence Certificate has a **published official blank application PDF** on MeeSeva Revenue forms and **consistent supporting-document checklists** on multiple district government sites.
+
+It is **not** fully M3-ready: English field schema still needs authoritative bilingual confirmation; template rights and package acceptance remain open.
+
+### 3.2 Verified / partial findings
+
+| Item | Status | Evidence |
 |---|---|---|
-| Service | Residence Certificate (General / Passport variants) | District sites e.g. https://prakasam.ap.gov.in/service/residence-certificate/ |
-| Supporting docs | Application form; Ration/EPIC/Aadhaar; House tax / telephone / electricity bill; Photo mandatory for Passport type | Same |
-| Portal | MeeSeva / district guidance | District pages + ap.meeseva.gov.in |
-| Form PDF | Telugu residence form exists under MeeSeva Revenue forms | https://ap.meeseva.gov.in/DeptPortal/Application%20Forms%20New/Revenue-pdf/REVENUE%20-%20RESIDENCE-Telugu.pdf |
+| Service types | VERIFIED | General and Passport — e.g. https://visakhapatnam.ap.gov.in/service/residence-certificate/ |
+| Supporting documents | VERIFIED (district pages) | Application form; Ration/EPIC/Aadhaar; House tax / telephone / electricity bill; Photo mandatory for Passport type |
+| Official blank form | VERIFIED (artifact exists) | https://ap.meeseva.gov.in/DeptPortal/Application%20Forms%20New/Revenue-pdf/REVENUE%20-%20RESIDENCE-Telugu.pdf |
+| English field schema | PARTIAL / UNVERIFIED | Telugu form exists; this review did not produce a counsel/official English field mapping |
+| Form usage permissions | UNVERIFIED | |
+| Package acceptance | UNVERIFIED | MeeSeva centre / portal paths described; facsimile acceptance unknown |
+| Fee / SLA | UNVERIFIED for a single statewide figure in this pass | Third-party figures discarded; need charter/SOP confirmation |
 
-Fallback also requires field-level verification and package-format decision before M3. **Do not implement both services in MVP.**
+### 3.3 Indicative Telugu form labels (UNVERIFIED English gloss — do not implement from this alone)
+
+The official PDF appears to collect applicant identity/address/purpose/residence-duration and ID numbers, plus declaration/signature and supporting-doc checklist. **Treat any English rendering below as ASSUMPTION until bilingual official confirmation:**
+
+ASSUMED labels pending verification: applicant name; father/husband name; door no.; street/locality; village/town; mandal; date of birth; purpose; years of residence; ration card no.; Aadhaar no.; voter ID no.; declaration; signature; enclosures (application, ration/EPIC/Aadhaar, utility/house-tax proof).
+
+### 3.4 Residence blockers (if selected)
+
+| ID | Blocker |
+|---|---|
+| R1 | Authoritative English (or bilingual) field schema from official form / portal |
+| R2 | Package format decision (same as B2) |
+| R3 | Form reproduction permissions (same as B3) |
+| R4 | Confirm General vs Passport scope for MVP (recommend **General only**) |
+| R5 | Confirm fee/SLA from authoritative charter/SOP |
 
 ---
 
-## 11. Synthetic development policy
+## 4. Assumptions (explicit)
 
-Until compliance approval: use only synthetic identities and synthetic income/ID document images. No real Aadhaar, PAN, passport, or citizen income documents in external AI pipelines.
+| ID | Assumption | Impact if wrong |
+|---|---|---|
+| A1 | Online-first AP services still benefit from an assistive preparation package | Package value changes; worksheet may still help |
+| A2 | District supporting-doc lists for Residence match current MeeSeva practice statewide | May need portal confirmation |
+| A3 | Regular Income Certificate field capture is possible via authenticated portal walkthrough | If not, Income remains blocked indefinitely for form mapping |
+
+---
+
+## 5. Product implications for package generation
+
+Until B2/R2 and acceptance are decided:
+
+- Do **not** claim a generated PDF is the official government form.  
+- Prefer framing: **assistive application worksheet + supporting-document pack + portal/MeeSeva step checklist**.  
+- Deterministic mapping to an “official form facsimile” remains blocked without schema + rights.
+
+---
+
+## 6. Change detection (RECOMMENDATION)
+
+1. Re-check MeeSeva Application Forms index and APSEVA SOP/user manuals quarterly.  
+2. Capture portal field schemas with dated screenshots/hashes into `ServiceDefinition` changelog.  
+3. Never silently mutate published service definition versions.
+
+---
+
+## 7. Synthetic development policy
+
+Synthetic identities/documents only until compliance approval. No real Aadhaar, PAN, passport, or citizen income documents to external AI.
+
+---
+
+## 8. Recommended pilot choice (M2 closure)
+
+| Option | Recommendation |
+|---|---|
+| **Stay on Income Certificate** | Only if product owner accepts **assistive worksheet + checklist** (clears B2 as non-facsimile) **and** commits to B1 portal field capture before any “official form” claims |
+| **Switch preferred pilot to Residence Certificate (General)** | **RECOMMENDED for faster form-artifact progress** — official blank PDF exists; supporting docs verified on district sites; still requires R1–R5 before full M3 |
+| Implement both | **Rejected** for MVP |
+
+**Engineering recommendation:** Ask product owner to **select Residence Certificate (General)** as the first official workflow **or** explicitly approve Income Certificate assistive-only package scope. Until that decision + field schema evidence, **M3 service-catalog / application-engine implementation must not proceed**.
+
+---
+
+## 9. Can M3 proceed?
+
+| M3 workstream | Allowed now? |
+|---|---|
+| Full service definition with official field mapping + form template claims | **No** — BLOCKED |
+| Application engine / PDF package generator for official facsimile | **No** — BLOCKED |
+| Scaffolding against a *provisional* assistive worksheet after PO decision on pilot + B2/R2 | **Only after explicit product-owner approval** (not started in this task) |
+| Continue Income Certificate research / Residence bilingual field capture | **Yes** (research only) |

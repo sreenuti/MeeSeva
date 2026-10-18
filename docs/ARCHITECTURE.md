@@ -46,8 +46,8 @@
 | `identity` | Auth session bridging, user records, MFA status mirrors, account deletion orchestration |
 | `consent` | Purpose-bound consent records and preference updates |
 | `vault` | Upload validation, storage keys, metadata, signed access, versioning, delete |
-| `intelligence` | Classification/OCR/extraction jobs, confidence, provenance refs |
-| `profile` | CitizenProfile / ProfileField, verification, conflicts |
+| `intelligence` | Local OCR/text extraction, classification, structured fields, processing jobs (M2) |
+| `profile` | CitizenProfile / ProfileField, verification, conflicts (M2) |
 | `catalog` | Versioned ServiceDefinition, requirements, form templates |
 | `applications` | Draft mapping, missing/conflict logic, HITL approval, packages |
 | `notifications` | Expiry reminders and in-app notification records |
@@ -76,7 +76,11 @@ Modules communicate in-process via clear interfaces/data contracts. No network m
 
 ### Justified deviations
 
-None yet. Any stack change must be recorded in `DECISIONS.md`.
+| Deviation | Reason |
+|---|---|
+| Local OCR/text extraction (pypdf + optional Tesseract) instead of cloud OCR | M2 forbids external OCR/LLM; keep provider interface for later approved cloud use |
+
+Any further stack change must be recorded in `DECISIONS.md`.
 
 ### Explicitly deferred
 
@@ -89,10 +93,11 @@ Microservices, Kubernetes, event mesh, vector databases, multi-agent orchestrati
 ### 4.1 Document upload → profile update
 
 1. Browser uploads file to API (authenticated).
-2. `vault` validates MIME/size/content heuristics; stores object privately; writes `Document` + `DocumentVersion`.
-3. Worker runs classification + OCR + extraction → `ExtractedField` records (unverified).
-4. Citizen reviews in UI; verified values upsert `ProfileField` with provenance.
-5. Conflicts remain visible until resolved by user.
+2. `vault` validates MIME/size/content heuristics; stores object privately; writes `Document` + `DocumentVersion`; malware scan must be `clean`.
+3. Citizen starts processing → `DocumentProcessingJob` (queued/processing).
+4. Local text extraction + classification + deterministic field extraction → `DocumentExtraction` / `ExtractedField` (unverified).
+5. Citizen reviews in UI; confirmed/corrected values upsert `ProfileField` with provenance.
+6. Material conflicts set `verification_state=conflict` until the citizen resolves them.
 
 ### 4.2 Application preparation
 

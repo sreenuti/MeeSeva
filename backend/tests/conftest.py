@@ -22,6 +22,7 @@ from app.config import get_settings
 from app.db import Base, get_db
 from app.identity.jwt_validator import mint_dev_token
 from app.main import create_app
+from app import models as _models  # noqa: F401 — register metadata
 
 get_settings.cache_clear()
 

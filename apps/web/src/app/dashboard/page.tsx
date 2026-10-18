@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Shell } from "@/components/Shell";
@@ -182,6 +183,12 @@ export default function DashboardPage() {
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-2">
+                    <Link
+                      href={`/documents/${doc.id}`}
+                      className="rounded-md bg-accent px-3 py-1.5 text-sm text-white"
+                    >
+                      Check details
+                    </Link>
                     <button
                       type="button"
                       disabled={!doc.downloadable}

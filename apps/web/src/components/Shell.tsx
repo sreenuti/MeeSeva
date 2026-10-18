@@ -23,6 +23,9 @@ export function Shell({
           <Link href="/dashboard" className="underline-offset-4 hover:underline">
             Vault
           </Link>
+          <Link href="/profile" className="underline-offset-4 hover:underline">
+            Profile
+          </Link>
           <span className="text-ink/40">|</span>
           <span className="max-w-[12rem] truncate text-ink/70" title={email || ""}>
             {email || "Signed in"}

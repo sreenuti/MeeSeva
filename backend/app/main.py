@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
 from app.identity.router import router as identity_router
+from app.intelligence.router import router as intelligence_router
 from app.vault.router import router as vault_router
 
 
@@ -33,6 +34,7 @@ def create_app() -> FastAPI:
     )
     app.include_router(identity_router, prefix=settings.api_prefix)
     app.include_router(vault_router, prefix=settings.api_prefix)
+    app.include_router(intelligence_router, prefix=settings.api_prefix)
 
     @app.get("/health")
     def health():

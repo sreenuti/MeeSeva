@@ -1,0 +1,1 @@
+"""Document intelligence module (M2). Local OCR/classification/extraction only."""

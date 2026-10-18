@@ -40,7 +40,8 @@ Do not reopen unless material feasibility, security, or regulatory blocker.
 | A4 | Private encrypted object storage | APPROVED (requirement) | No public document buckets |
 | A5 | Managed IdP with MFA | APPROVED (requirement) | Vendor: Amazon Cognito (M1) |
 | A6 | Lightweight job worker; Redis only if needed | RECOMMENDATION | Avoid premature infra |
-| A7 | Pluggable OCR/LLM providers | APPROVED (direction) | Provider selection OPEN (D2) |
+| A7 | Pluggable OCR/LLM providers | APPROVED (direction) | M2 uses local pypdf (+ optional Tesseract); cloud OCR still OPEN (D2) |
+| A11 | M2 extraction approach | APPROVED (M2) | Deterministic label parsers for synthetic docs; no generative LLM in M2 |
 | A8 | Deterministic PDF packaging | APPROVED (direction) | AI must not invent required values |
 | A9 | No microservices/K8s/vector DB/multi-agent for MVP | APPROVED | Complexity deferral |
 | A10 | India hosting region for production PII | RECOMMENDATION | Confirm after compliance (D3) |
@@ -52,10 +53,10 @@ Do not reopen unless material feasibility, security, or regulatory blocker.
 | ID | Topic | Options / notes | Needed by |
 |---|---|---|---|
 | D1 | Managed IdP vendor | **Selected: Amazon Cognito** (M1). Pool + MFA still require manual AWS setup — see `M1_COGNITO_SETUP.md` | M1 (config pending) |
-| D2 | OCR/extraction provider | Cloud Vision / Textract / Azure Document Intelligence / in-house Tesseract hybrid — DPA required | M2 |
+| D2 | OCR/extraction provider | **M2 baseline:** local pypdf (+ optional Tesseract). Cloud OCR still OPEN for later | M2 done / cloud later |
 | D3 | Production cloud + region | Must support encryption, private storage, residency expectations | Before M6 pilot |
-| D4 | Income Certificate package format | Official-form facsimile vs assistive worksheet + portal checklist | Before M3 (**BLOCKER** B2) |
-| D5 | Proceed with Income Certificate vs switch to Residence Certificate | Depends on clearing `PILOT_SERVICE` blockers | Before M3 |
+| D4 | Package format for first service | Official-form facsimile vs **assistive worksheet + portal/MeeSeva checklist** (recommended default until rights/schema clear) | Before M3 (**BLOCKER**) |
+| D5 | First official workflow | **Income Certificate remains product baseline but BLOCKED for field mapping.** Research (2026-10-18): no regular Income blank form on MeeSeva forms index; EWS must not substitute. **Residence Certificate (General)** has official Telugu blank form + district supporting-doc lists — **RECOMMENDED switch** pending PO approval; still needs English field confirmation (R1–R5 in `PILOT_SERVICE.md`) | Before M3 (**BLOCKER**) |
 | D6 | Freemium numeric limits | Storage MB, #applications/month, reminder features | M5 (can stub earlier) |
 | D7 | Pricing | Amounts, trials, annual vs monthly | Post-M5 / commercial validation |
 | D8 | External notification channels | In-app only vs email/SMS for MVP | M5 |
@@ -79,11 +80,20 @@ Do not reopen unless material feasibility, security, or regulatory blocker.
 
 ## 5. Product-owner approvals required next
 
-1. Accept M0 documentation set and residual blockers.  
-2. Decide D4/D5 (package format + pilot service path) before authorizing M3.  
-3. Choose D1 (IdP) before M1 implementation starts.  
-4. Confirm D10 naming caution (avoid government trademark confusion).  
-5. Authorize start of **M1 only** (not M2–M6) after M0 acceptance.
+1. Accept M2 closure (local-dev conditional approval already noted).  
+2. **Decide D5:** keep Income Certificate (assistive-only until B1) **or switch to Residence Certificate (General)**.  
+3. **Decide D4:** package format (recommend assistive worksheet + checklist; no official-form claim).  
+4. Confirm D11 before any official-form facsimile work.  
+5. Do **not** authorize full M3 (catalog/engine/PDF package) until D4/D5 (+ schema evidence) clear.  
+6. Cognito pool/MFA setup remains outstanding for non-dev auth (D1 config).  
+7. Confirm D10 naming caution (avoid government trademark confusion).
+
+### M2 closure research note (2026-10-18)
+
+- **VERIFIED:** Income Certificate service metadata + supporting-doc checklist (APSEVA/GSWS).  
+- **MISSING:** Regular Income Certificate blank form / field schema (MeeSeva forms index lists EWS & Agricultural Income, not regular Income).  
+- **VERIFIED artifact:** Residence Certificate Telugu application PDF on MeeSeva.  
+- **M3 status:** **Not cleared** for implementation.
 
 ---
 

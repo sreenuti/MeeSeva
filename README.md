@@ -8,7 +8,8 @@ Secure, AI-assisted citizen application preparation platform (initial geography:
 
 - **M0** — Product alignment & architecture (docs/)
 - **M1** — Secure identity & document vault (**implemented**)
-- M2+ — Not started
+- **M2** — Document intelligence & verified profile (**implemented**, pending review)
+- M3+ — Not started
 
 ## Quick start (development auth)
 

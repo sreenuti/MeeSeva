@@ -1,6 +1,6 @@
 # Data Model
 
-**Status:** M0 baseline  
+**Status:** M0 + M1/M2 implementation  
 **Last updated:** 2026-10-18  
 **Store:** PostgreSQL (metadata) + private object storage (blobs)
 
@@ -43,16 +43,32 @@ Ownership rule: every citizen-owned row is scoped by `user_id` (or equivalent) a
 | **Security** | Storage key never exposed; signed URLs only |
 | **Retention** | Kept for audit/history until document purge |
 
+### DocumentProcessingJob (M2)
+
+| | |
+|---|---|
+| **Purpose** | Per-version intelligence job lifecycle |
+| **Key fields** | `id`, `document_id`, `document_version_id` (unique), `user_id`, `status` (`queued`/`processing`/`awaiting_user_review`/`completed`/`failed`/`unsupported`), `error_code`, `error_message` |
+| **Ownership** | User |
+| **Security** | Enqueued only after malware clean + ownership checks |
+
+### DocumentExtraction (M2)
+
+| | |
+|---|---|
+| **Purpose** | Classification summary for a processing job |
+| **Key fields** | `predicted_category`, `category_certainty`, `user_category`, `extraction_method`, `page_count` |
+
 ### ExtractedField
 
 | | |
 |---|---|
-| **Purpose** | AI/OCR proposed value before/after user review |
-| **Key fields** | `id`, `document_version_id`, `field_key`, `raw_value`, `normalized_value`, `confidence`, `source_page`, `source_bbox` (nullable), `status` (`proposed`/`accepted`/`rejected`), `model_ref` |
-| **Relationships** | N→1 DocumentVersion; may seed ProfileField |
+| **Purpose** | Proposed value before/after user review |
+| **Key fields** | `id`, `document_id`, `document_version_id`, `field_key`, `raw_value`, `normalized_value`, `confidence` (`unknown`/`low`/`medium`/`high`), `validation_result`, `verification_status` (`extracted_unverified`/`needs_review`/`user_verified`/`user_corrected`/`rejected`), `source_page`, `source_text_snippet`, `extraction_method` |
+| **Relationships** | N→1 DocumentExtraction; may seed ProfileField |
 | **Ownership** | Via document owner |
 | **Security** | Treat as sensitive; do not log values |
-| **Retention** | Tied to document version lifecycle |
+| **Retention** | Tied to extraction/document lifecycle |
 
 ### CitizenProfile
 
@@ -70,11 +86,11 @@ Ownership rule: every citizen-owned row is scoped by `user_id` (or equivalent) a
 | | |
 |---|---|
 | **Purpose** | Single profile attribute with verification and provenance |
-| **Key fields** | `id`, `profile_id`, `field_key`, `value`, `verification_state` (`unverified`/`verified`/`conflict`), `source_document_ids[]`, `source_extracted_field_ids[]`, `user_corrected`, `updated_at` |
+| **Key fields** | `id`, `profile_id`, `field_key`, `value`, `verification_state` (`unverified`/`verified`/`conflict`/`needs_review`), `source_document_id`, `source_document_version_id`, `source_extracted_field_id`, `original_extracted_value`, `user_corrected`, `conflict_candidates_json`, `updated_at` |
 | **Relationships** | N→1 CitizenProfile; references Documents/ExtractedFields |
 | **Ownership** | Via profile |
 | **Security** | Field-level audit on verify/correct |
-| **Retention** | Deleted with profile; history via AuditEvent |
+| **Retention** | Deleted with profile; confirmed values retained if source document is soft-deleted (IDs may dangle) |
 
 ### ServiceDefinition
 

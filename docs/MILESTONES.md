@@ -41,13 +41,14 @@
 | | |
 |---|---|
 | **Objective** | Extract structured fields from documents and build a verified profile with provenance |
-| **Dependencies** | M1; approved OCR provider for synthetic/dev; extraction schema for pilot-relevant docs |
-| **Scope** | Classification; OCR; extraction jobs; confidence; manual correction; profile fields; conflicts |
-| **Deliverables** | Worker pipeline; ExtractedField/ProfileField UX; provenance display |
-| **Acceptance criteria** | No auto-verify; every accepted field has source refs; conflicts surfaced; failures retry safely |
-| **Focused tests** | Poor OCR; unsupported types; conflict merge; job interruption/idempotency |
-| **Exit gate** | Extraction evaluation on synthetic set; provider data-handling approved for current env |
-| **Exclusions** | Service catalog engine, package PDF, assistant, real PII to external AI |
+| **Dependencies** | M1 complete |
+| **Scope** | Local OCR/text extraction; classification; extraction jobs; confidence; manual correction; profile fields; conflicts |
+| **Deliverables** | Intelligence APIs; profile APIs; review/profile UI; migration `20261018_0002`; `docs/M2_INTELLIGENCE.md` |
+| **Acceptance criteria** | No auto-verify; every accepted field has source refs; conflicts surfaced; security gate enforced; ownership isolation |
+| **Focused tests** | Clean process; quarantine deny; provenance; corrections; conflicts; isolation; duplicate jobs; M1 vault intact |
+| **Exit gate** | Product-owner review of M2 report |
+| **Exclusions** | Service catalog, application prep, package PDF, assistant, real PII to external AI, M3+ |
+| **Implementation status** | **Implemented (pending review)** — 2026-10-18 |
 
 ---
 
