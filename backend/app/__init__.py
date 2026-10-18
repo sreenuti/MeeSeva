@@ -1,0 +1,1 @@
+"""India AI Citizen Services Platform — API package."""

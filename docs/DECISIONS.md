@@ -38,7 +38,7 @@ Do not reopen unless material feasibility, security, or regulatory blocker.
 | A2 | FastAPI + Pydantic backend | RECOMMENDATION → treat as baseline | Same |
 | A3 | PostgreSQL system of record | RECOMMENDATION → treat as baseline | Same |
 | A4 | Private encrypted object storage | APPROVED (requirement) | No public document buckets |
-| A5 | Managed IdP with MFA | APPROVED (requirement) | Vendor OPEN (D1) |
+| A5 | Managed IdP with MFA | APPROVED (requirement) | Vendor: Amazon Cognito (M1) |
 | A6 | Lightweight job worker; Redis only if needed | RECOMMENDATION | Avoid premature infra |
 | A7 | Pluggable OCR/LLM providers | APPROVED (direction) | Provider selection OPEN (D2) |
 | A8 | Deterministic PDF packaging | APPROVED (direction) | AI must not invent required values |
@@ -51,7 +51,7 @@ Do not reopen unless material feasibility, security, or regulatory blocker.
 
 | ID | Topic | Options / notes | Needed by |
 |---|---|---|---|
-| D1 | Managed IdP vendor | Auth0, Clerk, Cognito, Firebase Auth, other — prefer MFA + India data considerations | M1 |
+| D1 | Managed IdP vendor | **Selected: Amazon Cognito** (M1). Pool + MFA still require manual AWS setup — see `M1_COGNITO_SETUP.md` | M1 (config pending) |
 | D2 | OCR/extraction provider | Cloud Vision / Textract / Azure Document Intelligence / in-house Tesseract hybrid — DPA required | M2 |
 | D3 | Production cloud + region | Must support encryption, private storage, residency expectations | Before M6 pilot |
 | D4 | Income Certificate package format | Official-form facsimile vs assistive worksheet + portal checklist | Before M3 (**BLOCKER** B2) |

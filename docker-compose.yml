@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: citizen
+      POSTGRES_PASSWORD: citizen
+      POSTGRES_DB: citizen_services
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U citizen -d citizen_services"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      ENVIRONMENT: development
+      AUTH_MODE: ${AUTH_MODE:-dev}
+      AUTH_DEV_MODE: ${AUTH_DEV_MODE:-true}
+      AUTH_DEV_JWT_SECRET: ${AUTH_DEV_JWT_SECRET:-dev-only-change-me}
+      COGNITO_REGION: ${COGNITO_REGION:-}
+      COGNITO_USER_POOL_ID: ${COGNITO_USER_POOL_ID:-}
+      COGNITO_APP_CLIENT_ID: ${COGNITO_APP_CLIENT_ID:-}
+      COGNITO_MFA_REQUIRED: ${COGNITO_MFA_REQUIRED:-true}
+      DATABASE_URL: postgresql+psycopg://citizen:citizen@db:5432/citizen_services
+      STORAGE_BACKEND: local
+      LOCAL_STORAGE_PATH: /data/vault
+      CORS_ORIGINS: http://localhost:3000
+      MALWARE_SCANNER: stub
+    ports:
+      - "8000:8000"
+    volumes:
+      - vault_data:/data/vault
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+      NEXT_PUBLIC_AUTH_MODE: ${AUTH_MODE:-dev}
+      NEXT_PUBLIC_COGNITO_REGION: ${COGNITO_REGION:-}
+      NEXT_PUBLIC_COGNITO_USER_POOL_ID: ${COGNITO_USER_POOL_ID:-}
+      NEXT_PUBLIC_COGNITO_APP_CLIENT_ID: ${COGNITO_APP_CLIENT_ID:-}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  vault_data:
